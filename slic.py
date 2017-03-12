@@ -55,9 +55,9 @@ class SLICProcessor(object):
                        self.data[h][w][1],
                        self.data[h][w][2])
 
-    def __init__(self, filename, K):
+    def __init__(self, filename, K, M):
         self.K = K
-        self.M = 40
+        self.M = M
 
         self.data = self.open_image(filename)
         self.image_height = self.data.shape[0]
@@ -155,13 +155,25 @@ class SLICProcessor(object):
         self.move_clusters()
         for i in trange(10):
             self.assignment()
-            name = 'slic_{}_assignment_M{}_K{}.png'.format(i, self.M, self.K)
-            self.save_current_image(name)
             self.update_cluster()
-            name = 'slic_{}_update_M{}_K{}.png'.format(i, self.M, self.K)
+            name = 'lenna_M{m}_K{k}_loop{loop}.png'.format(loop=i, m=self.M, k=self.K)
             self.save_current_image(name)
 
 
 if __name__ == '__main__':
-    p = SLICProcessor('Lenna.png', 200)
+    p = SLICProcessor('Lenna.png', 200, 40)
+    p.iterate_10times()
+    p = SLICProcessor('Lenna.png', 300, 40)
+    p.iterate_10times()
+    p = SLICProcessor('Lenna.png', 500, 40)
+    p.iterate_10times()
+    p = SLICProcessor('Lenna.png', 1000, 40)
+    p.iterate_10times()
+    p = SLICProcessor('Lenna.png', 200, 5)
+    p.iterate_10times()
+    p = SLICProcessor('Lenna.png', 300, 5)
+    p.iterate_10times()
+    p = SLICProcessor('Lenna.png', 500, 5)
+    p.iterate_10times()
+    p = SLICProcessor('Lenna.png', 1000, 5)
     p.iterate_10times()
