@@ -11,7 +11,7 @@ class Cluster(object):
         self.update(h, w, l, a, b)
         self.pixels = []
         self.no = self.cluster_index
-        self.cluster_index += 1
+        Cluster.cluster_index += 1
 
     def update(self, h, w, l, a, b):
         self.h = h
