@@ -1,6 +1,8 @@
 # slic-python-implementation
 The python implementation to make superpixels by slic.
 
+The code is pretty old, and support python27 only.
+
 ## RUN
 
     pip install -r requirements.txt
