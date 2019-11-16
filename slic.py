@@ -50,6 +50,8 @@ class SLICProcessor(object):
         io.imsave(path, rgb_arr)
 
     def make_cluster(self, h, w):
+        h = int(h)
+        w = int(w)
         return Cluster(h, w,
                        self.data[h][w][0],
                        self.data[h][w][1],
@@ -85,9 +87,9 @@ class SLICProcessor(object):
         if h + 1 >= self.image_height:
             h = self.image_height - 2
 
-        gradient = self.data[w + 1][h + 1][0] - self.data[w][h][0] + \
-                   self.data[w + 1][h + 1][1] - self.data[w][h][1] + \
-                   self.data[w + 1][h + 1][2] - self.data[w][h][2]
+        gradient = self.data[h + 1][w + 1][0] - self.data[h][w][0] + \
+                   self.data[h + 1][w + 1][1] - self.data[h][w][1] + \
+                   self.data[h + 1][w + 1][2] - self.data[h][w][2]
         return gradient
 
     def move_clusters(self):
@@ -134,9 +136,9 @@ class SLICProcessor(object):
                 sum_h += p[0]
                 sum_w += p[1]
                 number += 1
-                _h = sum_h / number
-                _w = sum_w / number
-                cluster.update(_h, _w, self.data[_h][_w][0], self.data[_h][_w][1], self.data[_h][_w][2])
+            _h = int(sum_h / number)
+            _w = int(sum_w / number)
+            cluster.update(_h, _w, self.data[_h][_w][0], self.data[_h][_w][1], self.data[_h][_w][2])
 
     def save_current_image(self, name):
         image_arr = np.copy(self.data)
