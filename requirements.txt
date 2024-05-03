@@ -15,4 +15,4 @@ scikit-image==0.13.0
 scipy==0.19.1
 six==1.10.0
 subprocess32==3.2.7
-tqdm==4.15.0
+tqdm==4.66.3
